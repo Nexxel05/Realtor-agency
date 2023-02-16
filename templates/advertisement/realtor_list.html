@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Realtors:</h1>
+  <ul>
+    {% for realtor in realtor_list %}
+    <li>{{realtor}}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
