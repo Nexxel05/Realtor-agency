@@ -37,7 +37,8 @@ class Address(models.Model):
         ordering = ["city"]
         verbose_name_plural = "addresses"
 
-    def __str__(self):
+    @property
+    def full_address(self):
         return f"{self.city} - {self.street} {self.house}/{self.apartment}"
 
 
@@ -49,3 +50,6 @@ class Advertisement(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="advertisements")
     realtors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="advertisements")
     sold = models.BooleanField()
+
+    def __str__(self):
+        return self.address.full_address
