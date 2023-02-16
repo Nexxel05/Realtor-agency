@@ -17,6 +17,10 @@ class Realtor(AbstractUser):
 class Property(models.Model):
     name = models.CharField(max_length=63)
 
+    class Meta:
+        ordering = ["name"]
+        verbose_name_plural = "properties"
+
     def __str__(self):
         return self.name
 
