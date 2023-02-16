@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
-from advertisement.models import Realtor, Advertisement
+from advertisement.models import Realtor, Advertisement, Property
 
 
 def index(request):
@@ -22,3 +22,6 @@ class RealtorListView(ListView):
 class RealtorDetailView(DetailView):
     model = Realtor
 
+
+class PropertyListView(ListView):
+    model = Property
