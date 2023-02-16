@@ -8,5 +8,13 @@
     <li>Total area: {{advertisement.total_area}}</li>
     <li>Description: {{advertisement.description}}</li>
     <li>Sold: {{advertisement.sold}}</li>
+    <li>Realtors working:</li>
+    <ul>
+      {% for realtor in advertisement.realtors.all %}
+        <li>{{realtor.username}}</li>
+      {% endfor %}
+    </ul>
+
+
   </ul>
 {% endblock %}
