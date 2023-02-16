@@ -24,8 +24,8 @@ class Property(models.Model):
 class Address(models.Model):
     city = models.CharField(max_length=63)
     street = models.CharField(max_length=63)
-    house = models.CharField(max_length=63)
-    apartment = models.CharField(max_length=63)
+    house = models.IntegerField()
+    apartment = models.CharField(max_length=63, null=True, blank=True)
     zip_code = models.IntegerField()
 
     class Meta:
