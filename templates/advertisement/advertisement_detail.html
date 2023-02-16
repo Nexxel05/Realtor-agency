@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{advertisement}}</h1>
+  <ul>
+    <li>Property_type: {{advertisement.property}}</li>
+    <li>Price: {{advertisement.price}}$</li>
+    <li>Total area: {{advertisement.total_area}}</li>
+    <li>Description: {{advertisement.description}}</li>
+    <li>Sold: {{advertisement.sold}}</li>
+  </ul>
+{% endblock %}

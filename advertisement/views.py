@@ -29,3 +29,11 @@ class PropertyListView(ListView):
 
 class PropertyDetailView(DetailView):
     model = Property
+
+
+class AdvertisementListView(ListView):
+    model = Advertisement
+
+
+class AdvertisementDetailView(DetailView):
+    model = Advertisement

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Advertisements:</h1>
+  <ul>
+    {% for advertisement in advertisement_list %}
+    <li>{{advertisement}}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
