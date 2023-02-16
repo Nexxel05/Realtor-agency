@@ -10,3 +10,10 @@ class Realtor(AbstractUser):
 
     def str(self):
         return f"{self.first_name} {self.last_name} ({self.username})"
+
+
+class Property(models.Model):
+    name = models.CharField(max_length=63)
+
+    def __str__(self):
+        return self.name
