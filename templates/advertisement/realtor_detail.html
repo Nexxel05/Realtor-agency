@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{realtor.first_name}} {{realtor.last_name}}</h1>
+  <ul>
+    <li>Email: {{realtor.email}}</li>
+    <li>Phone number: {{realtor.phone_number}}</li>
+    <li>Years of experience: {{realtor.years_of_experience}}+</li>
+  </ul>
+{% endblock %}
