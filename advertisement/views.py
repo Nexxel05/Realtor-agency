@@ -25,3 +25,7 @@ class RealtorDetailView(DetailView):
 
 class PropertyListView(ListView):
     model = Property
+
+
+class PropertyDetailView(DetailView):
+    model = Property
