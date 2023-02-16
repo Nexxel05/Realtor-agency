@@ -1,3 +1,5 @@
 .idea
 venv
 **__pycache__
+advertisement/migrations
+db.sqlite3
