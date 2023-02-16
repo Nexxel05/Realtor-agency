@@ -3,8 +3,8 @@ from django.db import models
 
 
 class Realtor(AbstractUser):
-    years_of_experience = models.IntegerField()
-    phone_number = models.CharField(max_length=20)
+    years_of_experience = models.IntegerField(null=True)
+    phone_number = models.CharField(max_length=20, null=True, blank=True)
     date_registered = models.DateTimeField(auto_now_add=True)
 
     class Meta:
