@@ -17,3 +17,15 @@ class Property(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Address(models.Model):
+    city = models.CharField(max_length=63)
+    street = models.CharField(max_length=63)
+    house = models.CharField(max_length=63)
+    apartment = models.CharField(max_length=63)
+    zip_code = models.IntegerField()
+
+    class Meta:
+        ordering = ["city"]
+        verbose_name_plural = "addresses"
