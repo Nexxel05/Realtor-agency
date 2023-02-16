@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -10,7 +11,7 @@ class Realtor(AbstractUser):
     class Meta:
         verbose_name = "realtor"
 
-    def str(self):
+    def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.username})"
 
 
@@ -36,12 +37,15 @@ class Address(models.Model):
         ordering = ["city"]
         verbose_name_plural = "addresses"
 
+    def __str__(self):
+        return f"{self.city} - {self.street} {self.house}/{self.apartment}"
+
 
 class Advertisement(models.Model):
     address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name="advertisements")
-    description = models.TextField()
-    total_area = models.IntegerField()
+    description = models.TextField(blank=True)
+    total_area = models.CharField(max_length=10)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="advertisements")
-    realtors = models.ManyToManyField(Realtor, related_name="advertisements")
+    realtors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="advertisements")
     sold = models.BooleanField()
