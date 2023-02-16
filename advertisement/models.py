@@ -29,3 +29,13 @@ class Address(models.Model):
     class Meta:
         ordering = ["city"]
         verbose_name_plural = "addresses"
+
+
+class Advertisement(models.Model):
+    address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name="advertisements")
+    description = models.TextField()
+    total_area = models.IntegerField()
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="advertisements")
+    realtors = models.ManyToManyField(Realtor, related_name="advertisements")
+    sold = models.BooleanField()
