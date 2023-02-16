@@ -24,3 +24,10 @@ class AddressAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Property)
+
+
+@admin.register(Advertisement)
+class AdvertisementAdmin(admin.ModelAdmin):
+    list_display = ("address", "description", "total_area", "price", "property", "sold")
+    search_fields = ("address__street",)
+    list_filter = ("property__name",)
