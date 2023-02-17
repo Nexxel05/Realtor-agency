@@ -67,3 +67,8 @@ class AdvertisementCreateView(CreateView):
     model = Advertisement
     form_class = AdvertisementCreationForm
     success_url = reverse_lazy("advertisement:advertisement-list")
+
+
+class AdvertisementDeleteView(DeleteView):
+    model = Advertisement
+    success_url = reverse_lazy("advertisement:advertisement-list")
