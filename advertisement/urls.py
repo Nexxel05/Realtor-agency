@@ -7,17 +7,19 @@ from advertisement.views import (
     PropertyListView,
     PropertyDetailView,
     AdvertisementListView,
-    AdvertisementDetailView
+    AdvertisementDetailView,
+    PropertyCreateView
 )
 
 urlpatterns = [
     path('', index, name="index"),
     path('realtors/', RealtorListView.as_view(), name="realtor-list"),
-    path('realtors/<int:pk>', RealtorDetailView.as_view(), name="realtor-detail"),
+    path('realtors/<int:pk>/', RealtorDetailView.as_view(), name="realtor-detail"),
     path('properties/', PropertyListView.as_view(), name="property-list"),
-    path('properties/<int:pk>', PropertyDetailView.as_view(), name="property-detail"),
+    path('properties/<int:pk>/', PropertyDetailView.as_view(), name="property-detail"),
+    path('properties/create/', PropertyCreateView.as_view(), name="property-create"),
     path('advertisements/', AdvertisementListView.as_view(), name="advertisement-list"),
-    path('advertisements/<int:pk>', AdvertisementDetailView.as_view(), name="advertisement-detail"),
+    path('advertisements/<int:pk>/', AdvertisementDetailView.as_view(), name="advertisement-detail"),
 
 ]
 
