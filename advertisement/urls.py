@@ -10,7 +10,8 @@ from advertisement.views import (
     AdvertisementDetailView,
     PropertyCreateView,
     PropertyDeleteView,
-    RealtorCreateView
+    RealtorCreateView,
+    RealtorDeleteView, AdvertisementCreateView
 )
 
 urlpatterns = [
@@ -18,14 +19,16 @@ urlpatterns = [
     path('realtors/', RealtorListView.as_view(), name="realtor-list"),
     path('realtors/<int:pk>/', RealtorDetailView.as_view(), name="realtor-detail"),
     path('realtors/create/', RealtorCreateView.as_view(), name="realtor-create"),
+    path('realtors/<int:pk>/delete/', RealtorDeleteView.as_view(), name="realtor-delete"),
 
     path('properties/', PropertyListView.as_view(), name="property-list"),
     path('properties/<int:pk>/', PropertyDetailView.as_view(), name="property-detail"),
     path('properties/create/', PropertyCreateView.as_view(), name="property-create"),
-    path('properties/delete/<int:pk>/', PropertyDeleteView.as_view(), name="property-delete"),
+    path('properties/<int:pk>/delete/', PropertyDeleteView.as_view(), name="property-delete"),
 
     path('advertisements/', AdvertisementListView.as_view(), name="advertisement-list"),
     path('advertisements/<int:pk>/', AdvertisementDetailView.as_view(), name="advertisement-detail"),
+    path('advertisements/create', AdvertisementCreateView.as_view(), name="advertisement-create"),
 
 ]
 
