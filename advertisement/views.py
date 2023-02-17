@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
-from advertisement.forms import RealtorCreationForm, AdvertisementCreationForm
+from advertisement.forms import RealtorCreationForm, AdvertisementCreationForm, RealtorUpdateForm
 from advertisement.models import Realtor, Advertisement, Property
 
 
@@ -28,6 +28,12 @@ class RealtorDetailView(DetailView):
 class RealtorCreateView(CreateView):
     model = Realtor
     form_class = RealtorCreationForm
+    success_url = reverse_lazy("advertisement:realtor-list")
+
+
+class RealtorUpdateView(UpdateView):
+    model = Realtor
+    form_class = RealtorUpdateForm
     success_url = reverse_lazy("advertisement:realtor-list")
 
 

@@ -18,6 +18,16 @@ class RealtorCreationForm(UserCreationForm):
         )
 
 
+class RealtorUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Realtor
+        fields = (
+            "email",
+            "years_of_experience",
+            "phone_number"
+        )
+
+
 class AdvertisementCreationForm(forms.ModelForm):
     realtors = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
