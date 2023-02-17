@@ -41,12 +41,15 @@ class Address(models.Model):
     def full_address(self):
         return f"{self.city} - {self.street} {self.house}/{self.apartment}"
 
+    def __str__(self):
+        return self.full_address
+
 
 class Advertisement(models.Model):
     address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name="advertisements")
     description = models.TextField(blank=True)
     total_area = models.CharField(max_length=10)
-    price = models.DecimalField(max_digits=8, decimal_places=2)
+    price = models.DecimalField(max_digits=12, decimal_places=2)
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="advertisements")
     realtors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="advertisements")
     sold = models.BooleanField()

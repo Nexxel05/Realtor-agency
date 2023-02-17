@@ -4,7 +4,7 @@
   <h1>Advertisements:</h1>
   <ul>
     {% for advertisement in advertisement_list %}
-    <li>{{advertisement}}</li>
+    <li><a href="{% url 'advertisement:advertisement-detail' pk=advertisement.id %}">{{advertisement}}</a></li>
     {% endfor %}
   </ul>
 {% endblock %}

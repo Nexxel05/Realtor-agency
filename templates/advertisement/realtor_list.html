@@ -4,7 +4,7 @@
   <h1>Realtors:</h1>
   <ul>
     {% for realtor in realtor_list %}
-    <li>{{realtor}}</li>
+    <li><a href="{% url 'advertisement:realtor-detail' pk=realtor.id %}">{{realtor}}</a></li>
     {% endfor %}
   </ul>
 {% endblock %}
