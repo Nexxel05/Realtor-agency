@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from advertisement.models import Realtor, Advertisement, Address, Property
+from advertisement.models import Realtor, Advertisement, City, Property
 
 
 @admin.register(Realtor)
@@ -16,18 +16,21 @@ class RealtorAdmin(UserAdmin):
     )
 
 
-@admin.register(Address)
-class AddressAdmin(admin.ModelAdmin):
-    list_display = ("city", "street", "house", "apartment", "zip_code")
-    search_fields = ("city",)
-    list_filter = ("city",)
+@admin.register(Advertisement)
+class AdvertisementAdmin(admin.ModelAdmin):
+    list_display = (
+        "city",
+        "street",
+        "house",
+        "apartment",
+        "total_area",
+        "price",
+        "property",
+        "sold",
+    )
+    search_fields = ("street",)
+    list_filter = ("property__name", "city__name")
 
 
 admin.site.register(Property)
-
-
-@admin.register(Advertisement)
-class AdvertisementAdmin(admin.ModelAdmin):
-    list_display = ("address", "description", "total_area", "price", "property", "sold")
-    search_fields = ("address__street",)
-    list_filter = ("property__name",)
+admin.site.register(City)

@@ -26,27 +26,22 @@ class Property(models.Model):
         return self.name
 
 
-class Address(models.Model):
-    city = models.CharField(max_length=63)
-    street = models.CharField(max_length=63)
-    house = models.IntegerField()
-    apartment = models.CharField(max_length=63, null=True, blank=True)
-    zip_code = models.IntegerField()
+class City(models.Model):
+    name = models.CharField(max_length=63)
 
     class Meta:
-        ordering = ["city"]
-        verbose_name_plural = "addresses"
-
-    @property
-    def full_address(self):
-        return f"{self.city} - {self.street} {self.house}/{self.apartment}"
+        ordering = ["name"]
+        verbose_name_plural = "cities"
 
     def __str__(self):
-        return self.full_address
+        return self.name
 
 
 class Advertisement(models.Model):
-    address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name="advertisements")
+    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name="advertisements")
+    street = models.CharField(max_length=63)
+    house = models.IntegerField()
+    apartment = models.CharField(max_length=63, null=True, blank=True)
     description = models.TextField(blank=True)
     total_area = models.CharField(max_length=10)
     price = models.DecimalField(max_digits=12, decimal_places=2)
@@ -55,4 +50,4 @@ class Advertisement(models.Model):
     sold = models.BooleanField()
 
     def __str__(self):
-        return self.address.full_address
+        return f"{self.city.name} - {self.street} {self.house}/{self.apartment}"
