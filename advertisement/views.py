@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
 
 from advertisement.models import Realtor, Advertisement, Property
 
@@ -35,6 +35,11 @@ class PropertyDetailView(DetailView):
 class PropertyCreateView(CreateView):
     model = Property
     fields = ("name",)
+    success_url = reverse_lazy("advertisement:property-list")
+
+
+class PropertyDeleteView(DeleteView):
+    model = Property
     success_url = reverse_lazy("advertisement:property-list")
 
 
