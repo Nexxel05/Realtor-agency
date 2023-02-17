@@ -11,7 +11,10 @@ from advertisement.views import (
     PropertyCreateView,
     PropertyDeleteView,
     RealtorCreateView,
-    RealtorDeleteView, AdvertisementCreateView, AdvertisementDeleteView
+    RealtorDeleteView,
+    AdvertisementCreateView,
+    AdvertisementDeleteView,
+    AdvertisementUpdateView
 )
 
 urlpatterns = [
@@ -30,6 +33,7 @@ urlpatterns = [
     path('advertisements/<int:pk>/', AdvertisementDetailView.as_view(), name="advertisement-detail"),
     path('advertisements/create', AdvertisementCreateView.as_view(), name="advertisement-create"),
     path('advertisements/<int:pk>/delete/', AdvertisementDeleteView.as_view(), name="advertisements-delete"),
+    path('advertisements/<int:pk>/update/', AdvertisementUpdateView.as_view(), name="advertisements-update"),
 
 ]
 
