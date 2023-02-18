@@ -7,4 +7,6 @@
     <li><a href="{% url 'advertisement:advertisement-detail' pk=advertisement.id %}">{{advertisement}}</a></li>
     {% endfor %}
   </ul>
+  <a class="btn btn-primary" href="{% url 'advertisement:advertisement-create' %}">Create</a>
+
 {% endblock %}
