@@ -2,5 +2,6 @@
 
 {% block content %}
   <h1>{{property.name}} - General information</h1>
-
+  <a class="btn btn-secondary" href="{% url 'advertisement:property-update' pk=property.id %}">Update</a>
+  <a class="btn btn-danger" href="{% url 'advertisement:property-delete' pk=property.id %}">Delete</a>
 {% endblock %}

@@ -61,6 +61,11 @@ class PropertyDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("advertisement:property-list")
 
 
+class PropertyUpdateView(LoginRequiredMixin, UpdateView):
+    model = Property
+    fields = ("name", )
+
+
 class AdvertisementListView(LoginRequiredMixin, ListView):
     model = Advertisement
 
