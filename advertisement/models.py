@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 
 class Realtor(AbstractUser):
@@ -13,6 +14,9 @@ class Realtor(AbstractUser):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.username})"
+
+    def get_absolute_url(self):
+        return reverse("advertisement:realtor-detail", kwargs={"pk": self.pk})
 
 
 class Property(models.Model):
