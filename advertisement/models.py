@@ -29,6 +29,9 @@ class Property(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("advertisement:property-detail", kwargs={"pk": self.pk})
+
 
 class City(models.Model):
     name = models.CharField(max_length=63)
@@ -51,7 +54,10 @@ class Advertisement(models.Model):
     price = models.DecimalField(max_digits=12, decimal_places=2)
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="advertisements")
     realtors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="advertisements")
-    sold = models.BooleanField()
+    sold = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.city.name} - {self.street} {self.house}/{self.apartment}"
+
+    def get_absolute_url(self):
+        return reverse("advertisement:advertisement-detail", kwargs={"pk": self.pk})

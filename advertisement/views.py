@@ -31,13 +31,11 @@ class RealtorDetailView(LoginRequiredMixin, DetailView):
 class RealtorCreateView(LoginRequiredMixin, CreateView):
     model = Realtor
     form_class = RealtorCreationForm
-    success_url = reverse_lazy("advertisement:realtor-list")
 
 
 class RealtorUpdateView(LoginRequiredMixin, UpdateView):
     model = Realtor
     form_class = RealtorUpdateForm
-    success_url = reverse_lazy("advertisement:realtor-list")
 
 
 class RealtorDeleteView(LoginRequiredMixin, DeleteView):
@@ -56,7 +54,6 @@ class PropertyDetailView(LoginRequiredMixin, DetailView):
 class PropertyCreateView(LoginRequiredMixin, CreateView):
     model = Property
     fields = ("name",)
-    success_url = reverse_lazy("advertisement:property-list")
 
 
 class PropertyDeleteView(LoginRequiredMixin, DeleteView):
@@ -75,7 +72,6 @@ class AdvertisementDetailView(LoginRequiredMixin, DetailView):
 class AdvertisementCreateView(LoginRequiredMixin, CreateView):
     model = Advertisement
     form_class = AdvertisementCreationForm
-    success_url = reverse_lazy("advertisement:advertisement-list")
 
 
 class AdvertisementDeleteView(LoginRequiredMixin, DeleteView):
@@ -86,4 +82,3 @@ class AdvertisementDeleteView(LoginRequiredMixin, DeleteView):
 class AdvertisementUpdateView(LoginRequiredMixin, UpdateView):
     model = Advertisement
     form_class = AdvertisementCreationForm
-    success_url = reverse_lazy("advertisement:advertisement-list")
