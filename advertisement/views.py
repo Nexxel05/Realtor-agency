@@ -1,11 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
-from advertisement.forms import RealtorCreationForm, AdvertisementCreationForm, RealtorUpdateForm, RealtorSearchForm
+from advertisement.forms import RealtorCreationForm, AdvertisementCreationForm, RealtorUpdateForm, RealtorSearchForm, \
+    AdvertisementSearchForm
 from advertisement.models import Realtor, Advertisement, Property
 
 
@@ -25,7 +26,7 @@ class RealtorListView(LoginRequiredMixin, ListView):
     model = Realtor
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super(RealtorListView, self).get_queryset()
         form = RealtorSearchForm(self.request.GET)
 
         if form.is_valid():
@@ -37,7 +38,7 @@ class RealtorListView(LoginRequiredMixin, ListView):
         return queryset
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(RealtorListView, self).get_context_data()
 
         search = self.request.GET.get("search", "")
 
@@ -91,6 +92,25 @@ class PropertyUpdateView(LoginRequiredMixin, UpdateView):
 
 class AdvertisementListView(LoginRequiredMixin, ListView):
     model = Advertisement
+
+    def get_queryset(self):
+        queryset = super(AdvertisementListView, self).get_queryset()
+
+        cities = self.request.GET.getlist("cities")
+
+        if cities:
+            return self.model.objects.filter(
+                city__in=cities
+            ).distinct()
+
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(AdvertisementListView, self).get_context_data()
+
+        context["search_form"] = AdvertisementSearchForm()
+        
+        return context
 
 
 class AdvertisementDetailView(LoginRequiredMixin, DetailView):

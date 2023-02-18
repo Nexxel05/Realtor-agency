@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from advertisement.models import Realtor, Advertisement
+from advertisement.models import Realtor, Advertisement, City
 
 
 class RealtorCreationForm(UserCreationForm):
@@ -78,3 +78,15 @@ def validate_advertisement_house(house):
     if house <= 0:
         raise ValidationError("House number can not be negative")
     return house
+
+
+class AdvertisementSearchForm(forms.ModelForm):
+    cities = forms.ModelMultipleChoiceField(
+        queryset=City.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        label=""
+    )
+
+    class Meta:
+        model = Advertisement
+        fields = ("cities",)

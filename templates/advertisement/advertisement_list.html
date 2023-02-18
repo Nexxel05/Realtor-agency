@@ -1,7 +1,17 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
   <h1>Advertisements:</h1>
+  <form action="" method="get">
+    {{ search_form|crispy }}
+
+    <input type="submit" value="Search" class="btn btn-success">
+    <a class="btn btn-secondary" href="{% url 'advertisement:advertisement-list' %}">Reset</a>
+  </form>
+
+  <br>
+
   <ul>
     {% for advertisement in advertisement_list %}
     <li><a href="{% url 'advertisement:advertisement-detail' pk=advertisement.id %}">{{advertisement}}</a></li>
