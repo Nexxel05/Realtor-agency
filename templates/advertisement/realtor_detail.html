@@ -7,4 +7,6 @@
     <li>Phone number: {{realtor.phone_number}}</li>
     <li>Years of experience: {{realtor.years_of_experience}}+</li>
   </ul>
+  <a class="btn btn-secondary" href="{% url 'advertisement:realtor-update' pk=realtor.id %}">Update</a>
+  <a class="btn btn-danger" href="{% url 'advertisement:realtor-delete' pk=realtor.id %}">Delete</a>
 {% endblock %}

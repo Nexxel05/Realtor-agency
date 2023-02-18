@@ -34,8 +34,8 @@ urlpatterns = [
     path('advertisements/', AdvertisementListView.as_view(), name="advertisement-list"),
     path('advertisements/<int:pk>/', AdvertisementDetailView.as_view(), name="advertisement-detail"),
     path('advertisements/create', AdvertisementCreateView.as_view(), name="advertisement-create"),
-    path('advertisements/<int:pk>/delete/', AdvertisementDeleteView.as_view(), name="advertisements-delete"),
-    path('advertisements/<int:pk>/update/', AdvertisementUpdateView.as_view(), name="advertisements-update"),
+    path('advertisements/<int:pk>/delete/', AdvertisementDeleteView.as_view(), name="advertisement-delete"),
+    path('advertisements/<int:pk>/update/', AdvertisementUpdateView.as_view(), name="advertisement-update"),
 
 ]
 
