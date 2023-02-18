@@ -4,7 +4,7 @@
   <h1>Properties:</h1>
   <ul>
     {% for property in property_list %}
-      <li>{{property}}</li>
+      <li><a href="{% url 'advertisement:property-detail' pk=property.id %}">{{property}}</a></li>
     {% endfor %}
   </ul>
   <a class="btn btn-primary" href="{% url 'advertisement:property-create' %}">Create</a>
