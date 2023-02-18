@@ -28,6 +28,15 @@ class RealtorUpdateForm(forms.ModelForm):
         )
 
 
+class RealtorSearchForm(forms.Form):
+    search = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by username, first name or last name..."})
+    )
+
+
 class AdvertisementCreationForm(forms.ModelForm):
     realtors = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),

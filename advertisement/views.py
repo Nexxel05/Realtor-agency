@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
-from advertisement.forms import RealtorCreationForm, AdvertisementCreationForm, RealtorUpdateForm
+from advertisement.forms import RealtorCreationForm, AdvertisementCreationForm, RealtorUpdateForm, RealtorSearchForm
 from advertisement.models import Realtor, Advertisement, Property
 
 
@@ -22,6 +23,28 @@ def index(request):
 
 class RealtorListView(LoginRequiredMixin, ListView):
     model = Realtor
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        form = RealtorSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return queryset.filter(
+                Q(first_name__icontains=form.cleaned_data["search"]) |
+                Q(last_name__icontains=form.cleaned_data["search"]) |
+                Q(username__icontains=form.cleaned_data["search"])
+            )
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        search = self.request.GET.get("search", "")
+
+        context["search_form"] = RealtorSearchForm(initial={
+            "search": search
+        })
+        return context
 
 
 class RealtorDetailView(LoginRequiredMixin, DetailView):
