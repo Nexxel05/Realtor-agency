@@ -12,10 +12,14 @@
 
   <br>
 
-  <ul>
-    {% for realtor in realtor_list %}
-    <li><a href="{% url 'advertisement:realtor-detail' pk=realtor.id %}">{{realtor}}</a></li>
-    {% endfor %}
-  </ul>
-  <a class="btn btn-primary" href="{% url 'advertisement:realtor-create' %}">Create</a>
+  {% if realtor_list %}
+    <ul>
+      {% for realtor in realtor_list %}
+      <li><a href="{% url 'advertisement:realtor-detail' pk=realtor.id %}">{{realtor}}</a></li>
+      {% endfor %}
+    </ul>
+    <a class="btn btn-primary" href="{% url 'advertisement:realtor-create' %}">Create</a>
+  {% else %}
+    <p>There are no realtors in the system yet!</p>
+  {% endif %}
 {% endblock %}

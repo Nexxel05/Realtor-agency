@@ -24,6 +24,7 @@ def index(request):
 
 class RealtorListView(LoginRequiredMixin, ListView):
     model = Realtor
+    paginate_by = 5
 
     def get_queryset(self):
         queryset = super(RealtorListView, self).get_queryset()
@@ -69,6 +70,7 @@ class RealtorDeleteView(LoginRequiredMixin, DeleteView):
 
 class PropertyListView(LoginRequiredMixin, ListView):
     model = Property
+    paginate_by = 10
 
 
 class PropertyDetailView(LoginRequiredMixin, DetailView):
@@ -92,6 +94,7 @@ class PropertyUpdateView(LoginRequiredMixin, UpdateView):
 
 class AdvertisementListView(LoginRequiredMixin, ListView):
     model = Advertisement
+    paginate_by = 5
 
     def get_queryset(self):
         queryset = super(AdvertisementListView, self).get_queryset()
