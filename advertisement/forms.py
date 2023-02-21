@@ -17,6 +17,9 @@ class RealtorCreationForm(UserCreationForm):
             "phone_number"
         )
 
+    def clean_phone_number(self):
+        return validate_realtor_phone_number(self.cleaned_data["phone_number"])
+
 
 class RealtorUpdateForm(forms.ModelForm):
     class Meta:
@@ -26,6 +29,21 @@ class RealtorUpdateForm(forms.ModelForm):
             "years_of_experience",
             "phone_number"
         )
+
+    def clean_phone_number(self):
+        return validate_realtor_phone_number(self.cleaned_data["phone_number"])
+
+
+def validate_realtor_phone_number(phone_number: str):
+    if len(phone_number) != 9:
+        raise ValidationError(
+            "Phone number must be 9 digits long"
+        )
+    elif not phone_number.isdigit():
+        raise ValidationError(
+            "Phone number must contain only digits"
+        )
+    return phone_number
 
 
 class RealtorSearchForm(forms.Form):
@@ -56,28 +74,6 @@ class AdvertisementCreationForm(forms.ModelForm):
             "property",
             "realtors"
         )
-
-    def clean_price(self):
-        return validate_advertisement_price(
-            self.cleaned_data["price"],
-        )
-
-    def clean_house(self):
-        return validate_advertisement_house(
-            self.cleaned_data["house"],
-        )
-
-
-def validate_advertisement_price(price):
-    if price <= 0:
-        raise ValidationError("Price must be higher then 0")
-    return price
-
-
-def validate_advertisement_house(house):
-    if house <= 0:
-        raise ValidationError("House number can not be negative")
-    return house
 
 
 class AdvertisementSearchForm(forms.ModelForm):
