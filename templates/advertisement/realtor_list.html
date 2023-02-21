@@ -6,7 +6,8 @@
 
   <form action="" method="get">
     {{ search_form|crispy }}
-    <input type="submit" value="Search" class="btn btn-secondary">
+    <input type="submit" value="Search" class="btn btn-success">
+    <a class="btn btn-secondary" href="{% url 'advertisement:realtor-list' %}">Reset</a>
   </form>
 
   <br>
