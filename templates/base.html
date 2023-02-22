@@ -19,14 +19,13 @@
     {% block navbar %}
         {% include "includes/navbar.html" %}
     {% endblock %}
+
     <div class="content">
         {% block content %}{% endblock %}
+        {% block pagination %}
+            {% include "includes/pagination.html" %}
+        {% endblock %}
     </div>
-
-
-    {% block pagination %}
-        {% include "includes/pagination.html" %}
-    {% endblock %}
 
 </body>
 
