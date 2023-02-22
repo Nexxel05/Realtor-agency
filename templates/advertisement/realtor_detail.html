@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>{{realtor.first_name}} {{realtor.last_name}}</h1>
+  <h1>{{realtor.username}}</h1>
   <ul>
+    <li>First name: {{realtor.first_name}}</li>
+    <li>Last name: {{realtor.last_name}}</li>
     <li>Email: {{realtor.email}}</li>
-    <li>Phone number: {{realtor.phone_number}}</li>
-    <li>Years of experience: {{realtor.years_of_experience}}+</li>
+    <li>Phone number: {% if realtor.phone_number %} +380{{ realtor.phone_number }}{% else %} Unknown {% endif %}</li>
+    <li>Years of experience: {% if realtor.years_of_experience %} {{realtor.years_of_experience}}+{% else %} Unknown {% endif %}</li>
+    <li>Date registered: {{realtor.date_registered}}</li>
+    <li>Advertisements working on:</li>
+      <ul>
+        {% for advertisement in realtor.advertisements.all %}
+        <li><a href="{% url 'advertisement:advertisement-detail' pk=advertisement.id %}">{{ advertisement }}</a></li>
+      {% endfor %}
+      </ul>
   </ul>
   <a class="btn btn-secondary" href="{% url 'advertisement:realtor-update' pk=realtor.id %}">Update</a>
   <a class="btn btn-danger" href="{% url 'advertisement:realtor-delete' pk=realtor.id %}">Delete</a>
