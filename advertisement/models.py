@@ -73,7 +73,7 @@ class Advertisement(models.Model):
     sold = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.city.name} - {self.street} {self.house}/{self.apartment}"
+        return f"{self.city.name} - {self.street} {self.house}"
 
     def get_absolute_url(self):
         return reverse("advertisement:advertisement-detail", kwargs={"pk": self.pk})
