@@ -5,18 +5,14 @@ from advertisement.views import (
     RealtorListView,
     RealtorDetailView,
     PropertyListView,
-    PropertyDetailView,
     AdvertisementListView,
     AdvertisementDetailView,
-    PropertyCreateView,
-    PropertyDeleteView,
     RealtorCreateView,
     RealtorDeleteView,
     AdvertisementCreateView,
     AdvertisementDeleteView,
     AdvertisementUpdateView,
     RealtorUpdateView,
-    PropertyUpdateView
 )
 
 urlpatterns = [
