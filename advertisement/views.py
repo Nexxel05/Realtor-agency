@@ -66,6 +66,16 @@ class RealtorListView(LoginRequiredMixin, ListView):
 class RealtorDetailView(LoginRequiredMixin, DetailView):
     model = Realtor
 
+    def get_object(self, queryset=None):
+        return get_object_or_404(Realtor, id=self.kwargs["pk"])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+
+        context["num_of_successful_deals"] = self.get_object().advertisements.filter(sold=True).count()
+
+        return context
+
 
 class RealtorCreateView(LoginRequiredMixin, CreateView):
     model = Realtor
@@ -92,7 +102,7 @@ class AdvertisementListView(LoginRequiredMixin, ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        queryset = super(AdvertisementListView, self).get_queryset()
+        queryset = Advertisement.objects.all().select_related("city")
 
         cities = self.request.GET.getlist("cities")
 
