@@ -7,27 +7,29 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView, U
 
 from advertisement.forms import RealtorCreationForm, AdvertisementCreationForm, RealtorUpdateForm, RealtorSearchForm, \
     AdvertisementSearchForm
-from advertisement.models import Realtor, Advertisement, Property
+from advertisement.models import Realtor, Advertisement, Property, City
 
 
 @login_required
 def index(request):
-    num_of_realtors = Realtor.objects.count()
+    num_of_realtors = Realtor.objects.count() - 1
     num_of_advertisements = Advertisement.objects.count()
+    num_of_cities = City.objects.count()
 
     context = {
         "num_of_realtors": num_of_realtors,
-        "num_of_advertisements": num_of_advertisements
+        "num_of_advertisements": num_of_advertisements,
+        "num_of_cities": num_of_cities,
     }
     return render(request, "advertisement/index.html", context)
 
 
 class RealtorListView(LoginRequiredMixin, ListView):
     model = Realtor
-    paginate_by = 5
+    paginate_by = 3
 
     def get_queryset(self):
-        queryset = super(RealtorListView, self).get_queryset()
+        queryset = Realtor.objects.exclude(username="admin")
         form = RealtorSearchForm(self.request.GET)
 
         if form.is_valid():
@@ -46,6 +48,7 @@ class RealtorListView(LoginRequiredMixin, ListView):
         context["search_form"] = RealtorSearchForm(initial={
             "search": search
         })
+
         return context
 
 
@@ -73,28 +76,9 @@ class PropertyListView(LoginRequiredMixin, ListView):
     paginate_by = 10
 
 
-class PropertyDetailView(LoginRequiredMixin, DetailView):
-    model = Property
-
-
-class PropertyCreateView(LoginRequiredMixin, CreateView):
-    model = Property
-    fields = ("name",)
-
-
-class PropertyDeleteView(LoginRequiredMixin, DeleteView):
-    model = Property
-    success_url = reverse_lazy("advertisement:property-list")
-
-
-class PropertyUpdateView(LoginRequiredMixin, UpdateView):
-    model = Property
-    fields = ("name", )
-
-
 class AdvertisementListView(LoginRequiredMixin, ListView):
     model = Advertisement
-    paginate_by = 5
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = super(AdvertisementListView, self).get_queryset()

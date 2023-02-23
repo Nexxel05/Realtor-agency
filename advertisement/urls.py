@@ -29,10 +29,6 @@ urlpatterns = [
     path('realtors/<int:pk>/update/', RealtorUpdateView.as_view(), name="realtor-update"),
 
     path('properties/', PropertyListView.as_view(), name="property-list"),
-    path('properties/<int:pk>/', PropertyDetailView.as_view(), name="property-detail"),
-    path('properties/create/', PropertyCreateView.as_view(), name="property-create"),
-    path('properties/<int:pk>/delete/', PropertyDeleteView.as_view(), name="property-delete"),
-    path('properties/<int:pk>/update/', PropertyUpdateView.as_view(), name="property-update"),
 
     path('advertisements/', AdvertisementListView.as_view(), name="advertisement-list"),
     path('advertisements/<int:pk>/', AdvertisementDetailView.as_view(), name="advertisement-detail"),
