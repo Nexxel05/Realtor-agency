@@ -2,21 +2,36 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>Advertisements:</h1>
-  <form action="" method="get">
-    {{ search_form|crispy }}
+  <main role="main" class="container">
+    <div class="row">
 
-    <input type="submit" value="Search" class="btn btn-success">
-    <a class="btn btn-secondary" href="{% url 'advertisement:advertisement-list' %}">Reset</a>
-  </form>
+      <div class="col-md-8 blog-main">
+        <h1>Advertisements:</h1>
+        <ul>
+          {% for advertisement in advertisement_list %}
+          <li><a href="{% url 'advertisement:advertisement-detail' pk=advertisement.id %}">{{advertisement}}</a></li>
+          {% endfor %}
+        </ul>
+        <a class="btn btn-primary" href="{% url 'advertisement:advertisement-create' %}">Create</a>
 
-  <br>
+      </div>
+      <aside class="col-md-4 blog-sidebar">
 
-  <ul>
-    {% for advertisement in advertisement_list %}
-    <li><a href="{% url 'advertisement:advertisement-detail' pk=advertisement.id %}">{{advertisement}}</a></li>
-    {% endfor %}
-  </ul>
-  <a class="btn btn-primary" href="{% url 'advertisement:advertisement-create' %}">Create</a>
+        <div class="p-3">
+          <h4 class="font-italic">Select city</h4>
+          <form action="" method="get">
+            {{ search_form|crispy }}
+
+            <input type="submit" value="Search" class="btn btn-success">
+            <a class="btn btn-secondary" href="{% url 'advertisement:advertisement-list' %}">Reset</a>
+          </form>
+
+        </div>
+
+      </aside>
+    </div>
+
+  </main>
+
 
 {% endblock %}

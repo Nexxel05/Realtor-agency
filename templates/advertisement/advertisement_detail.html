@@ -5,13 +5,13 @@
   <ul>
     <li>Property type: {{advertisement.property}}</li>
     <li>Price: {{advertisement.price}}$</li>
-    <li>Total area: {{advertisement.total_area}}</li>
+    <li>Total area: {{advertisement.total_area}} m2</li>
     <li>Description: {{advertisement.description}}</li>
     <li>Sold: {{advertisement.sold}}</li>
     <li>Realtors working:</li>
     <ul>
       {% for realtor in advertisement.realtors.all %}
-        <li>{{realtor.username}}</li>
+        <li><a href="{% url 'advertisement:realtor-detail' pk=realtor.id %}">{{realtor.username}}</a></li>
       {% endfor %}
     </ul>
 
