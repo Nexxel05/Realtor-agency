@@ -12,7 +12,10 @@
           <li><p>Total area: {{advertisement.total_area}} m2</p></li>
           <li><p>Description: {{advertisement.description}}</p></li>
           <li><p>Status: {% if advertisement.sold %}  <strong style="color: green"> Sold</strong>
-            {% else %} <strong style="color: red"> Not sold yet </strong> {% endif %}<p></li>
+            {% else %} <strong style="color: red"> Not sold yet </strong> {% endif %}
+            <a class="btn btn-outline-primary" href="{% url 'advertisement:advertisement-change-status' pk=advertisement.id %}">Change</a>
+            <p></li>
+
           <li><p>Realtors working:<p></li>
           <ul>
             {% for realtor in advertisement.realtors.all %}

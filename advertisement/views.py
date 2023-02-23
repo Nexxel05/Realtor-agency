@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
@@ -128,3 +128,18 @@ class AdvertisementDeleteView(LoginRequiredMixin, DeleteView):
 class AdvertisementUpdateView(LoginRequiredMixin, UpdateView):
     model = Advertisement
     form_class = AdvertisementCreationForm
+
+
+@login_required
+def change_advertisement_status(request, pk):
+    advertisement = get_object_or_404(Advertisement, id=pk)
+
+    advertisement.sold = not advertisement.sold
+
+    advertisement.save()
+
+    return render(
+        request,
+        "advertisement/advertisement_detail.html",
+        context={"advertisement": advertisement}
+    )
