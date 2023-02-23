@@ -1,21 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>{{advertisement}}</h1>
-  <ul>
-    <li>Property type: {{advertisement.property}}</li>
-    <li>Price: {{advertisement.price}}$</li>
-    <li>Total area: {{advertisement.total_area}} m2</li>
-    <li>Description: {{advertisement.description}}</li>
-    <li>Sold: {{advertisement.sold}}</li>
-    <li>Realtors working:</li>
-    <ul>
-      {% for realtor in advertisement.realtors.all %}
-        <li><a href="{% url 'advertisement:realtor-detail' pk=realtor.id %}">{{realtor.username}}</a></li>
-      {% endfor %}
-    </ul>
+  <main role="main" class="container">
+    <div class="row">
 
-  </ul>
-  <a class="btn btn-secondary" href="{% url 'advertisement:advertisement-update' pk=advertisement.id %}">Update</a>
-  <a class="btn btn-danger" href="{% url 'advertisement:advertisement-delete' pk=advertisement.id %}">Delete</a>
+      <div class="col-md-8 blog-main">
+        <h1>{{advertisement}}</h1>
+        <ul style="border: 1px solid black">
+          <li><p>Property type: {{advertisement.property}}</p></li>
+          <li><p>Price: {{advertisement.price}}$</p></li>
+          <li><p>Total area: {{advertisement.total_area}} m2</p></li>
+          <li><p>Description: {{advertisement.description}}</p></li>
+          <li><p>Status: {% if advertisement.sold %}  <strong style="color: green"> Sold</strong>
+            {% else %} <strong style="color: red"> Not sold yet </strong> {% endif %}<p></li>
+          <li><p>Realtors working:<p></li>
+          <ul>
+            {% for realtor in advertisement.realtors.all %}
+              <li><a href="{% url 'advertisement:realtor-detail' pk=realtor.id %}">{{realtor.username}}</a></li>
+            {% endfor %}
+          </ul>
+        </ul>
+        <br>
+        <a class="btn btn-secondary" href="{% url 'advertisement:advertisement-update' pk=advertisement.id %}">Update</a>
+        <a class="btn btn-danger" href="{% url 'advertisement:advertisement-delete' pk=advertisement.id %}">Delete</a>
+      </div>
+    </div>
+  </main>
+
 {% endblock %}
