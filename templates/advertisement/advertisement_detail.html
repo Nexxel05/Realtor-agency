@@ -8,6 +8,9 @@
         <h1>{{advertisement}}</h1>
         <ul style="border: 1px solid black">
           <li><p>Property type: {{advertisement.property}}</p></li>
+          {% if advertisement.apartment %}
+            <li><p>Apartment number: {{ advertisement.apartment }}</p></li>
+          {% endif %}
           <li><p>Price: {{advertisement.price}}$</p></li>
           <li><p>Total area: {{advertisement.total_area}} m2</p></li>
           <li><p>Description: {{advertisement.description}}</p></li>
