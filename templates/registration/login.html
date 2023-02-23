@@ -7,18 +7,19 @@
   <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
 
-<h1>Login</h1>
+  <body>
+    <div class="text-center mb-4">
+      <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+      <p>Authentication is compulsory for every user. In this way we keep our system well-maintained and protected</p>
+    </div>
 
-{% if next %}
-  <p>Please login to see this page.</p>
-{% endif %}
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      {{ form|crispy }}
 
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  {{ form|crispy }}
-
-  <input type="submit" value="Login" class="btn btn-primary" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
+      <input type="submit" value="Login" class="btn btn-primary" />
+      <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+  </body>
 
 {% endblock %}
