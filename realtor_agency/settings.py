@@ -44,12 +44,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "debug_toolbar",
     "crispy_forms",
+    "crispy_bootstrap5",
     "advertisement",
 ]
 
 AUTH_USER_MODEL = "advertisement.Realtor"
 
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 INTERNAL_IPS = [
     "127.0.0.1",
