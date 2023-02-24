@@ -18,7 +18,7 @@ from advertisement.forms import (
     RealtorSearchForm,
     AdvertisementSearchForm
 )
-from advertisement.models import Realtor, Advertisement, Property, City
+from advertisement.models import Realtor, Advertisement, PropertyType, City
 
 
 @login_required
@@ -94,8 +94,8 @@ class RealtorDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("advertisement:realtor-list")
 
 
-class PropertyListView(LoginRequiredMixin, ListView):
-    model = Property
+class PropertyTypeListView(LoginRequiredMixin, ListView):
+    model = PropertyType
     paginate_by = 10
 
 

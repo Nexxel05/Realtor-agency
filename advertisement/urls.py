@@ -4,7 +4,7 @@ from advertisement.views import (
     index,
     RealtorListView,
     RealtorDetailView,
-    PropertyListView,
+    PropertyTypeListView,
     AdvertisementListView,
     AdvertisementDetailView,
     RealtorCreateView,
@@ -46,9 +46,9 @@ urlpatterns = [
     ),
 
     path(
-        "properties/",
-        PropertyListView.as_view(),
-        name="property-list"
+        "property_types/",
+        PropertyTypeListView.as_view(),
+        name="property-type-list"
     ),
 
     path(

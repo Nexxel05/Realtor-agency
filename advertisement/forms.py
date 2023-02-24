@@ -73,7 +73,7 @@ class AdvertisementCreationForm(forms.ModelForm):
             "description",
             "total_area",
             "price",
-            "property",
+            "property_type",
             "realtors"
         )
 

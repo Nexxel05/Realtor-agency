@@ -20,7 +20,7 @@ class Realtor(AbstractUser):
         return reverse("advertisement:realtor-detail", kwargs={"pk": self.pk})
 
 
-class Property(models.Model):
+class PropertyType(models.Model):
     name = models.CharField(max_length=63)
 
     class Meta:
@@ -29,9 +29,6 @@ class Property(models.Model):
 
     def __str__(self):
         return self.name
-
-    def get_absolute_url(self):
-        return reverse("advertisement:property-detail", kwargs={"pk": self.pk})
 
 
 class City(models.Model):
@@ -63,8 +60,8 @@ class Advertisement(models.Model):
             MinValueValidator(0, "Price can not be negative")
         ]
     )
-    property = models.ForeignKey(
-        Property,
+    property_type = models.ForeignKey(
+        PropertyType,
         on_delete=models.CASCADE,
         related_name="advertisements"
     )
