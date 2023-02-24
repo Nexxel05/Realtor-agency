@@ -45,9 +45,10 @@ class RealtorListView(LoginRequiredMixin, ListView):
 
         if form.is_valid():
             return queryset.filter(
-                Q(first_name__icontains=form.cleaned_data["search"]) |
-                Q(last_name__icontains=form.cleaned_data["search"]) |
-                Q(username__icontains=form.cleaned_data["search"])
+                Q(first_name__icontains=form.cleaned_data["search"]) | Q(
+                    last_name__icontains=form.cleaned_data["search"]) | Q(
+                    username__icontains=form.cleaned_data["search"]
+                )
             )
         return queryset
 
@@ -72,7 +73,8 @@ class RealtorDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
 
-        context["num_of_successful_deals"] = self.get_object().advertisements.filter(sold=True).count()
+        context["num_of_successful_deals"] = \
+            self.get_object().advertisements.filter(sold=True).count()
 
         return context
 
@@ -117,7 +119,7 @@ class AdvertisementListView(LoginRequiredMixin, ListView):
         context = super(AdvertisementListView, self).get_context_data()
 
         context["search_form"] = AdvertisementSearchForm()
-        
+
         return context
 
 

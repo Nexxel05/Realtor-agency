@@ -59,7 +59,9 @@ class Advertisement(models.Model):
     price = models.DecimalField(
         max_digits=12,
         decimal_places=2,
-        validators=[MinValueValidator(0, "Price can not be negative")]
+        validators=[
+            MinValueValidator(0, "Price can not be negative")
+        ]
     )
     property = models.ForeignKey(
         Property,
@@ -76,4 +78,6 @@ class Advertisement(models.Model):
         return f"{self.city.name} - {self.street} {self.house}"
 
     def get_absolute_url(self):
-        return reverse("advertisement:advertisement-detail", kwargs={"pk": self.pk})
+        return reverse(
+            "advertisement:advertisement-detail", kwargs={"pk": self.pk}
+        )
