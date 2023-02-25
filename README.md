@@ -4,7 +4,7 @@ Django project for management of realtors and advertisements
 
 ## Check it out!
 
-[Realtor agency project deployed to](PAST_LINK_HERE)
+[Realtor agency project deployed to Render](https://realtor-agency.onrender.com/)
 
 ## Installation
 
