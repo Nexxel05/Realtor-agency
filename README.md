@@ -6,6 +6,12 @@ Django project for management of realtors and advertisements
 
 [Realtor agency project deployed to Render](https://realtor-agency.onrender.com/)
 
+Login Credentials:
+
+User: admin
+
+Password: 1qazcde3
+
 ## Installation
 
 Python3 must be already installed

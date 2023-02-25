@@ -34,9 +34,9 @@
     </div>
     {% endfor %}
   </div>
-  <br>
-  <a class="btn btn-primary" href="{% url 'advertisement:realtor-create' %}">Create new realtor</a>
   {% else %}
     <p>There are no realtors in the system yet!</p>
   {% endif %}
+  <br>
+  <a class="btn btn-primary" href="{% url 'advertisement:realtor-create' %}">Create new realtor</a>
 {% endblock %}
