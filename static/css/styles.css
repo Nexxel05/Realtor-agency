@@ -18,11 +18,29 @@ body {
 }
 
 .realdeal {
-  margin: 30px 30px;
-  text-align: center
+  height: 500px;
+  background-image: url('/static/images/bg2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid black;
 }
 
-->
+.realdeal-text {
+  margin: 30px;
+  background-color: #e9ecef;
+  opacity: 0.8;
+  padding: 5px;
+
+}
+
+.realdeal-text h1, h4 {
+  text-align: center;
+  margin: 25px;
+  font-weight: bold;
+  color: #000000;
+}
+
 /* Three columns side by side */
 .column {
   float: left;
