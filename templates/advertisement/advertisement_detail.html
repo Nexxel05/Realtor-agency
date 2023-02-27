@@ -1,36 +1,81 @@
 {% extends "base.html" %}
 
 {% block content %}
+
   <main role="main" class="container">
-    <div class="row">
-
-      <div class="col-md-8 blog-main">
-        <h1>{{advertisement}}</h1>
-        <ul style="border: 1px solid black">
-          <li><p>Property type: {{advertisement.property_type}}</p></li>
+    <div class="advertisement">
+      <div class="card-header bg-transparent border-0">
+        <h3 style="text-align: center">{{advertisement}}</h3>
+      </div>
+      <div class="card-body pt-0">
+        <table class="table table-bordered">
+          <tr>
+            <th width="30%">City:</th>
+            <td width="2%">:</td>
+            <td>{{advertisement.city}}</td>
+          </tr>
+          <tr>
+            <th width="30%">Street:</th>
+            <td width="2%">:</td>
+            <td>{{advertisement.street}}</td>
+          </tr>
+          <tr>
+            <th width="30%">House number:</th>
+            <td width="2%">:</td>
+            <td>{{advertisement.house}}</td>
+          </tr>
           {% if advertisement.apartment %}
-            <li><p>Apartment number: {{ advertisement.apartment }}</p></li>
+            <tr>
+              <th width="30%">Apartment</th>
+              <td width="2%">:</td>
+              <td>{{advertisement.apartment}}</td>
+            </tr>
           {% endif %}
-          <li><p>Price: {{advertisement.price}}$</p></li>
-          <li><p>Total area: {{advertisement.total_area}} m2</p></li>
-          <li><p>Description: {{advertisement.description}}</p></li>
-          <li><p>Status: {% if advertisement.sold %}  <strong style="color: green"> Sold</strong>
-            {% else %} <strong style="color: red"> Not sold yet </strong> {% endif %}
-            <a class="btn btn-outline-primary" href="{% url 'advertisement:advertisement-change-status' pk=advertisement.id %}">Change</a>
-            <p></li>
-
-          <li><p>Realtors working:<p></li>
-          <ul>
-            {% for realtor in advertisement.realtors.all %}
-              <li><a href="{% url 'advertisement:realtor-detail' pk=realtor.id %}">{{realtor.username}}</a></li>
-            {% endfor %}
-          </ul>
-        </ul>
-        <br>
-        <a class="btn btn-secondary" href="{% url 'advertisement:advertisement-update' pk=advertisement.id %}">Update</a>
-        <a class="btn btn-danger" href="{% url 'advertisement:advertisement-delete' pk=advertisement.id %}">Delete</a>
+          <tr>
+            <th width="30%">Description</th>
+            <td width="2%">:</td>
+            <td>{{advertisement.description}}</td>
+          </tr>
+          <tr>
+            <th width="30%">Total area</th>
+            <td width="2%">:</td>
+            <td>{{advertisement.total_area}} m2</td>
+          </tr>
+          <tr>
+            <th width="30%">Price</th>
+            <td width="2%">:</td>
+            <td>{{advertisement.price}}$</td>
+          </tr>
+          <tr>
+            <th width="30%">Property type</th>
+            <td width="2%">:</td>
+            <td>{{advertisement.property_type}}</td>
+          </tr>
+          <tr>
+            <th width="30%">Realtors working</th>
+            <td width="2%">:</td>
+            <td>
+              <ul>
+                {% for realtor in advertisement.realtors.all %}
+                  <li><a href="{% url 'advertisement:realtor-detail' pk=realtor.id %}">{{realtor.username}}</a></li>
+                {% endfor %}
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Status</th>
+            <td width="2%">:</td>
+            <td>
+              {% if advertisement.sold %}  <strong style="color: green"> Sold</strong>
+              {% else %} <strong style="color: red"> Not sold yet </strong> {% endif %}
+              <a class="btn btn-outline-primary" href="{% url 'advertisement:advertisement-change-status' pk=advertisement.id %}">Change</a>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
+    <a class="btn btn-secondary" href="{% url 'advertisement:advertisement-update' pk=advertisement.id %}">Update</a>
+    <a class="btn btn-danger" href="{% url 'advertisement:advertisement-delete' pk=advertisement.id %}">Delete</a>
   </main>
 
 {% endblock %}
