@@ -18,7 +18,14 @@ class RealtorCreationForm(UserCreationForm):
         )
 
     def clean_phone_number(self):
-        return validate_realtor_phone_number(self.cleaned_data["phone_number"])
+        return validate_realtor_phone_number(
+            self.cleaned_data["phone_number"]
+        )
+
+    def clean_years_of_experience(self):
+        return validate_realtor_years_of_experience(
+            self.cleaned_data["years_of_experience"]
+        )
 
 
 class RealtorUpdateForm(forms.ModelForm):
@@ -31,7 +38,14 @@ class RealtorUpdateForm(forms.ModelForm):
         )
 
     def clean_phone_number(self):
-        return validate_realtor_phone_number(self.cleaned_data["phone_number"])
+        return validate_realtor_phone_number(
+            self.cleaned_data["phone_number"]
+        )
+
+    def clean_years_of_experience(self):
+        return validate_realtor_years_of_experience(
+            self.cleaned_data["years_of_experience"]
+        )
 
 
 def validate_realtor_phone_number(phone_number: str):
@@ -44,6 +58,19 @@ def validate_realtor_phone_number(phone_number: str):
             "Phone number must contain only digits"
         )
     return phone_number
+
+
+def validate_realtor_years_of_experience(
+        years_of_experience: int
+):
+
+    max_years_of_experience = 50
+
+    if years_of_experience > max_years_of_experience:
+        raise ValidationError(
+            f"Years of experience should be less than {max_years_of_experience}"
+        )
+    return years_of_experience
 
 
 class RealtorSearchForm(forms.Form):

@@ -6,7 +6,7 @@ from django.urls import reverse
 
 
 class Realtor(AbstractUser):
-    years_of_experience = models.IntegerField(null=True, blank=True)
+    years_of_experience = models.PositiveSmallIntegerField(null=True, blank=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
     date_registered = models.DateTimeField(auto_now_add=True)
 
