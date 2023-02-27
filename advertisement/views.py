@@ -142,6 +142,12 @@ class AdvertisementUpdateView(LoginRequiredMixin, UpdateView):
     form_class = AdvertisementCreationForm
 
 
+class CityCreateView(LoginRequiredMixin, CreateView):
+    model = City
+    fields = "__all__"
+    success_url = reverse_lazy("advertisement:advertisement-list")
+
+
 @login_required
 def change_advertisement_status(request, pk):
     advertisement = get_object_or_404(Advertisement, id=pk)
