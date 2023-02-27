@@ -30,6 +30,15 @@ body {
   padding: 0 8px;
 }
 
+.advertisement{
+  background-color: white;
+  border: 1px solid black;
+}
+
+.advertisement-divider{
+  height: 5px;
+  background-color: #e9ecef;
+}
 
 .card {
   margin: 0 20px;

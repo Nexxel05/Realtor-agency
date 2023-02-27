@@ -101,7 +101,7 @@ class PropertyTypeListView(LoginRequiredMixin, ListView):
 
 class AdvertisementListView(LoginRequiredMixin, ListView):
     model = Advertisement
-    paginate_by = 10
+    paginate_by = 5
 
     def get_queryset(self):
         queryset = Advertisement.objects.all().select_related("city")

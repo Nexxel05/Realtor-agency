@@ -7,16 +7,52 @@
 
       <div class="col-md-8 blog-main">
         <h1>Advertisements:</h1>
-        <ul>
+
+        {% if advertisement_list %}
           {% for advertisement in advertisement_list %}
-          <li><a href="{% url 'advertisement:advertisement-detail' pk=advertisement.id %}">{{advertisement}}</a></li>
+          <div class="advertisement">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="mb-0"><i class="far fa-clone pr-1"></i><a href="{% url 'advertisement:advertisement-detail' pk=advertisement.id %}">{{advertisement}}</a></h3>
+            </div>
+            <div class="card-body pt-0">
+              <table class="table table-bordered">
+                <tr>
+                  <th width="30%">Property type:</th>
+                  <td width="2%">:</td>
+                  <td>{{advertisement.property_type}}</td>
+                </tr>
+                <tr>
+                <tr>
+                  <th width="30%">Description</th>
+                  <td width="2%">:</td>
+                  <td>{{advertisement.description}}</td>
+                </tr>
+                <tr>
+                  <th width="30%">Status</th>
+                  <td width="2%">:</td>
+                  <td>
+                    {% if advertisement.sold %}  <strong style="color: green"> Sold</strong>
+                    {% else %} <strong style="color: red"> Not sold yet </strong> {% endif %}
+                  </td>
+                </tr>
+                <tr>
+                  <th width="30%">Price</th>
+                  <td width="2%">:</td>
+                  <td>{{advertisement.price}}$</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="advertisement-divider"></div>
           {% endfor %}
-        </ul>
+        {% else %}
+          <p>No advertisements is the system yet</p>
+        {% endif %}
+
         <a class="btn btn-primary" href="{% url 'advertisement:advertisement-create' %}">Create</a>
 
       </div>
       <aside class="col-md-4 blog-sidebar">
-
         <div class="p-3">
           <h4 class="font-italic">Select city</h4>
           <form action="" method="get">
@@ -25,9 +61,7 @@
             <input type="submit" value="Search" class="btn btn-success">
             <a class="btn btn-secondary" href="{% url 'advertisement:advertisement-list' %}">Reset</a>
           </form>
-
         </div>
-
       </aside>
     </div>
 
