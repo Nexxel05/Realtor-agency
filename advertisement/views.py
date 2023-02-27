@@ -145,7 +145,7 @@ class AdvertisementUpdateView(LoginRequiredMixin, UpdateView):
 class CityCreateView(LoginRequiredMixin, CreateView):
     model = City
     fields = "__all__"
-    success_url = reverse_lazy("advertisement:advertisement-list")
+    success_url = reverse_lazy("advertisement:advertisement-create")
 
 
 @login_required
