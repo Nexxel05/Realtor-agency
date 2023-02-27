@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import (
     ListView,
     DetailView,
@@ -156,8 +157,6 @@ def change_advertisement_status(request, pk):
 
     advertisement.save()
 
-    return render(
-        request,
-        "advertisement/advertisement_detail.html",
-        context={"advertisement": advertisement}
+    return HttpResponseRedirect(reverse(
+        "advertisement:advertisement-detail", args={pk: pk})
     )
