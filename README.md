@@ -19,7 +19,12 @@ Python3 must be already installed
 ```shell
 git clone https://github.com/Nexxel05/Realtor-agency.git
 python3 -m venv venv
+venv\Scripts\activate
 pip install -r requirements.txt
+```
+Create .env file in root ditectory and store there your SECRET_KEY like shown in .env_sample 
+```
+python manage.py migrate
 python manage.py runserver
 ```
 
