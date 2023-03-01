@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <ul class="navbar-nav">
+    {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ user.get_absolute_url }}">User: {{ user.get_username }}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout'%}?next={% url 'login'%}">Logout</a>
+      </li>
+    {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a>
+      </li>
+    {% endif %}
+    </ul>
+
+  <div class="collapse navbar-collapse justify-content-md-center">
+
+    <ul class="navbar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'advertisement:index' %}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'advertisement:realtor-list' %}">Realtors</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'advertisement:property-type-list' %}">Property types</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'advertisement:advertisement-list' %}">Advertisements</a>
+      </li>
+    </ul>
+  </div>
+</nav>

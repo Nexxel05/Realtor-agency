@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">Apartments</h2>
+      <p class="lead">Determining the right type of apartment for you is not always clear as there are so many types of apartments to consider. We are ready to help you find an apartment that meets your needs and exceeds your expectations!</p>
+    </div>
+    <div class="col-md-5">
+      <img class="featurette-image img-fluid mx-auto" src="{% static 'images/apartment.jpg' %}">
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7 order-md-2">
+      <h2 class="featurette-heading">House</h2>
+      <p class="lead"> House property as per the Income-tax Act, 1961 means any building (or land adjacent to such building) owned by the assessee himself. House property includes flats, shops, office space, factory sheds, commercial buildings, agricultural land and farmhouses etc.</p>
+    </div>
+    <div class="col-md-5 order-md-1">
+      <img class="featurette-image img-fluid mx-auto" src="{% static 'images/house.jpg' %}">
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">Land</h2>
+      <p class="lead"> Land, in the business sense, can refer to real estate or property, minus buildings and equipment, which is designated by fixed spatial boundaries. Land ownership might offer the titleholder the right to any natural resources that exist within the boundaries of their land.</p>
+    </div>
+    <div class="col-md-5">
+      <img class="featurette-image img-fluid mx-auto" src="{% static 'images/land.jpg' %}">
+    </div>
+  </div>
+
+{% endblock%}

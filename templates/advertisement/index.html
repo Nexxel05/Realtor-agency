@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="realdeal">
+    <div class="realdeal-text">
+      <h1 >RealDeal</h1>
+      <h4>Realdeal realtor agency is leading company in real estate advertising with more than 15 years of experience on the market. If you are looking to buy apartment, house or land then just contact us!</h4>
+    </div>
+  </div>
+
+  <br>
+  <div class="container marketing">
+    <h1 style="margin:50px; text-align: center">Why to choose Realdeal? Answer is in numbers!</h1>
+    <div class="row">
+
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="{% static 'images/realtor_general.png' %}" alt="Generic placeholder image" width="200" height="200">
+        <h2>{{ num_of_realtors }}+ Realtors</h2>
+        <p>Experienced realtors</p>
+        <p><a class="btn btn-secondary" href="{% url 'advertisement:realtor-list' %}" role="button">View details &raquo;</a></p>
+      </div>
+
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="{% static 'images/advertisement_general.png' %}" alt="Generic placeholder image" width="200" height="200">
+        <h2>{{ num_of_advertisements }}+ Advertisements</h2>
+        <p>Advertisements of different kind</p>
+        <p><a class="btn btn-secondary" href="{% url 'advertisement:advertisement-list' %}" role="button">View details &raquo;</a></p>
+      </div>
+
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="{% static 'images/property_general.png' %}" alt="Generic placeholder image" width="200" height="200">
+        <h2>{{ num_of_cities }} Cities</h2>
+        <p>Having advertisements in different cities</p>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div style="margin:50px; text-align: center">
+        <p>We operate all over the Ukraine, helping customers every day to buy and sell their houses and apartments. A successful outcome is the result of commitment, attentiveness and a firm focus on every customer’s individual wishes. By upholding these values and maintaining a focus on providing every customer with personal and reliable service, we know that we can give you a first-class experience from start to finish.</p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
